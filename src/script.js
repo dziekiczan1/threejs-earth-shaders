@@ -23,13 +23,13 @@ const textureLoader = new THREE.TextureLoader();
  * Earth
  */
 // Textures
-const earthDayTexture = textureLoader.load('./earth/day.jpg');
-earthDayTexture.colorSpace = THREE.sRGBColorSpace;
+const earthDayTexture = textureLoader.load('./earth/day.jpg')
+earthDayTexture.colorSpace = THREE.SRGBColorSpace
 
-const earthNightTexture = textureLoader.load('./earth/night.jpg');
-earthNightTexture.colorSpace = THREE.sRGBColorSpace;
+const earthNightTexture = textureLoader.load('./earth/night.jpg')
+earthNightTexture.colorSpace = THREE.SRGBColorSpace
 
-const earthSpecularCloudsTexture = textureLoader.load('./earth/specularClouds.jpg');
+const earthSpecularCloudsTexture = textureLoader.load('./earth/specularClouds.jpg')
 
 // Mesh
 const earthGeometry = new THREE.SphereGeometry(2, 64, 64);
@@ -40,7 +40,7 @@ const earthMaterial = new THREE.ShaderMaterial({
     {
         uDayTexture: new THREE.Uniform(earthDayTexture),
         uNightTexture: new THREE.Uniform(earthNightTexture),
-        uSpecularCloudsTexture: new THREE.Uniform(earthSpecularCloudsTexture),
+        uSpecularCloudsTexture: new THREE.Uniform(earthSpecularCloudsTexture)
     }
 });
 const earth = new THREE.Mesh(earthGeometry, earthMaterial);
