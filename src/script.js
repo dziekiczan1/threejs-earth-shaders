@@ -30,10 +30,12 @@ earthParameters.atmosphereTwilightColor = '#ff6600';
 
 gui.addColor(earthParameters, 'atmosphereDayColor').onChange(() => {
     earthMaterial.uniforms.uAtmosphereDayColor.value.set(earthParameters.atmosphereDayColor);
+    atmosphereMaterial.uniforms.uAtmosphereDayColor.value.set(earthParameters.atmosphereDayColor);
 });
 
 gui.addColor(earthParameters, 'atmosphereTwilightColor').onChange(() => {
     earthMaterial.uniforms.uAtmosphereTwilightColor.value.set(earthParameters.atmosphereTwilightColor);
+    atmosphereMaterial.uniforms.uAtmosphereTwilightColor.value.set(earthParameters.atmosphereTwilightColor);
 });
 
 // Textures
@@ -72,6 +74,11 @@ const atmosphereMaterial = new THREE.ShaderMaterial({
     fragmentShader: atmosphereFragmentShader,
     side: THREE.BackSide,
     transparent: true,
+    uniforms: {
+        uSunDirection: new THREE.Uniform(new THREE.Vector3(0, 0, 1)),
+        uAtmosphereDayColor: new THREE.Uniform(new THREE.Color(earthParameters.atmosphereDayColor)),
+        uAtmosphereTwilightColor: new THREE.Uniform(new THREE.Color(earthParameters.atmosphereTwilightColor))
+    }
 });
 const atmosphere = new THREE.Mesh(earthGeometry, atmosphereMaterial);
 atmosphere.scale.set(1.04, 1.04, 1.04);
@@ -101,6 +108,7 @@ const updateSun = () => {
 
     // Uniforms
     earthMaterial.uniforms.uSunDirection.value.copy(sunDirection);
+    atmosphereMaterial.uniforms.uSunDirection.value.copy(sunDirection);
 };
 updateSun();
 
