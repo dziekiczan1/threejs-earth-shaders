@@ -3,6 +3,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import GUI from 'lil-gui';
 import earthVertexShader from './shaders/earth/vertex.glsl';
 import earthFragmentShader from './shaders/earth/fragment.glsl';
+import atmosphereVertexShader from './shaders/atmosphere/vertex.glsl';
+import atmosphereFragmentShader from './shaders/atmosphere/fragment.glsl';
 
 /**
  * Base
@@ -66,6 +68,8 @@ scene.add(earth);
 
 // Atmosphere
 const atmosphereMaterial = new THREE.ShaderMaterial({
+    vertexShader: atmosphereVertexShader,
+    fragmentShader: atmosphereFragmentShader,
     side: THREE.BackSide,
     transparent: true,
 });
